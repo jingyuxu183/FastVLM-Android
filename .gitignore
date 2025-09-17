@@ -1,0 +1,58 @@
+*.iml
+.gradle
+/local.properties
+/.idea/caches
+/.idea/libraries
+/.idea/modules.xml
+/.idea/workspace.xml
+/.idea/navEditor.xml
+/.idea/assetWizardSettings.xml
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+.cxx
+local.properties
+
+# 大文件和模型文件
+FastVLM-onnx/
+FastVLM-0.5B/
+apple-FastVLM-0.5B/
+app/src/main/assets/FastVLM-onnx/onnx/
+*.safetensors
+*.onnx
+*.bin
+
+# 调试文件
+fastvlm_debug/
+fastvlm_debug_dump/
+fastvlm_log.txt
+fastvlm_log_utf8.txt
+full_log.txt
+files_list.txt
+fastvlm_decode_check.txt
+
+# CSV和大数据文件
+*.csv
+inputs_embeds_*.csv
+projector_*.csv
+
+# 临时文件和截图
+Pictures/
+*.png
+vlm_debug_snapshot_*.png
+
+# 开发过程文件
+*.bak
+window_dump*.xml
+camera_analysis_plan.md
+FASTVLM_ONNX模型部署方案.md
+
+# 备份文件夹
+backup/
+
+# IDE 和编辑器文件
+.idea/
+.vscode/
+*.swp
+*.swo

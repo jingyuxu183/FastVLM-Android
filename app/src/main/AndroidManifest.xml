@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- MVP版本基础权限 -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    
+    <!-- 视觉版本摄像头权限 -->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-feature android:name="android.hardware.camera" android:required="true" />
+    <uses-feature android:name="android.hardware.camera.autofocus" android:required="false" />
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Fastvlm">
+        <!-- 原始MVP版本 -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="false"
+            android:label="FastVLM MVP"
+            android:theme="@style/Theme.Fastvlm" />
+            
+        <!-- 新的视觉版本主界面 -->
+        <activity
+            android:name=".VisionMainActivity"
+            android:exported="true"
+            android:label="FastVLM 车机视觉AI"
+            android:theme="@style/Theme.Fastvlm"
+            android:screenOrientation="landscape">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+            
+        <!-- 摄像头检测测试界面 -->
+        <activity
+            android:name=".CameraTestActivity"
+            android:exported="false"
+            android:label="ATR摄像头检测器"
+            android:theme="@style/Theme.Fastvlm"
+            android:screenOrientation="landscape" />
+    </application>
+
+</manifest>
