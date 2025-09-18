@@ -1,8 +1,11 @@
 package com.example.fastvlm.camera
 
+import android.Manifest
 import android.content.Context
+import android.content.pm.PackageManager
 import android.hardware.camera2.*
 import android.util.Log
+import androidx.core.content.ContextCompat
 import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlin.coroutines.resume
 
@@ -75,6 +78,17 @@ class RealCameraFinder(private val context: Context) {
         }
         
         try {
+            // 权限检查，避免 SecurityException
+            if (ContextCompat.checkSelfPermission(context, Manifest.permission.CAMERA)
+                != PackageManager.PERMISSION_GRANTED) {
+                Log.w(TAG, "相机权限未授予，无法测试摄像头 $cameraId")
+                if (!resumed) {
+                    resumed = true
+                    continuation.resume(false)
+                }
+                return@suspendCancellableCoroutine
+            }
+
             Log.i(TAG, "尝试打开摄像头 $cameraId...")
             cameraManager.openCamera(cameraId, stateCallback, null)
             

@@ -50,11 +50,11 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
     
-    // ONNX Runtime for FastVLM MVP - 升级到最新版本支持GroupQueryAttention
-    implementation("com.microsoft.onnxruntime:onnxruntime-android:1.20.0")
+    // ONNX Runtime via version catalog
+    implementation(libs.onnxruntime.android)
     
-    // 协程支持
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
+    // 协程支持 via version catalog
+    implementation(libs.kotlinx.coroutines.android)
     
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

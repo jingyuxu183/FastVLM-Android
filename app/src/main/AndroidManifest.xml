@@ -2,9 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- MVP版本基础权限 -->
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!-- 存储权限：无需访问外部存储，移除过时权限，遵循分区存储 -->
     
     <!-- 视觉版本摄像头权限 -->
     <uses-permission android:name="android.permission.CAMERA" />
@@ -40,13 +38,7 @@
             </intent-filter>
         </activity>
             
-        <!-- 摄像头检测测试界面 -->
-        <activity
-            android:name=".CameraTestActivity"
-            android:exported="false"
-            android:label="ATR摄像头检测器"
-            android:theme="@style/Theme.Fastvlm"
-            android:screenOrientation="landscape" />
+        <!-- 调试Activity已移除，避免清单引用缺失类导致编译错误 -->
     </application>
 
 </manifest>

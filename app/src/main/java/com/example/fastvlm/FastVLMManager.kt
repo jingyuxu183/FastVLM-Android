@@ -147,8 +147,8 @@ class FastVLMManager {
 			feed0["attention_mask"] = OnnxTensor.createTensor(env, LongBuffer.wrap(attn0), longArrayOf(1, totalLen.toLong()))
 			feed0["position_ids"] = OnnxTensor.createTensor(env, LongBuffer.wrap(pos0), longArrayOf(1, totalLen.toLong()))
 			// empty past
-			val layerInputs = decoder!!.inputInfo.keys.filter { it.startsWith("past_key_values.") }
-            val layerCount = (layerInputs.size / 2).coerceAtLeast(1)
+            val layerInputs = decoder!!.inputInfo.keys.filter { it.startsWith("past_key_values.") }
+			val layerCount = (layerInputs.size / 2).coerceAtLeast(1)
 			val kv0 = decoder!!.inputInfo["past_key_values.0.key"] as NodeInfo
 			val kvShape = (kv0.info as TensorInfo).shape
 			val heads = kvShape[1]; val headDim = kvShape[3]
@@ -202,7 +202,7 @@ class FastVLMManager {
 		resized.getPixels(pixels, 0, 1024, 0, 0, 1024, 1024)
 		val arr = FloatArray(3*1024*1024)
 		val s = 1f/255f
-                    var i = 0
+		var i = 0
 		while (i < pixels.size) {
 			val p = pixels[i]
 			val r = ((p ushr 16) and 0xFF) * s
@@ -232,7 +232,7 @@ class FastVLMManager {
 		val scores = FloatArray(logits.size)
 		val seen = HashMap<Int, Int>()
 		for (id in generated) seen[id] = (seen[id] ?: 0) + 1
-            var i = 0
+		var i = 0
 		while (i < logits.size) {
 			var s = logits[i]
 			val cnt = seen[i] ?: 0
@@ -241,7 +241,7 @@ class FastVLMManager {
 			i++
 		}
 		val maxLogit = scores.maxOrNull() ?: 0f
-            var sum = 0.0
+		var sum = 0.0
 		val probs = DoubleArray(scores.size)
 		i = 0
 		while (i < scores.size) { val e = kotlin.math.exp((scores[i] - maxLogit).toDouble()); probs[i]=e; sum+=e; i++ }
